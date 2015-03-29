@@ -1,0 +1,8 @@
+#login .error {
+    background: none repeat scroll 0 0 #c00;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 0 10px;
+    padding: 5px;
+    text-align: center;
+}

@@ -1,0 +1,60 @@
+{{set . "title" "ToDo"}}
+{{template "header.html" .}}
+
+<div class="container">
+    <div class="col-md-4">
+        <h1>ToDo Example</h1>
+
+        {{range .errors}}
+            <p class="text-danger">{{.Message}}</p>
+        {{end}}
+        <p class="text-success">{{.flash.success}}</p>
+
+        <form action="{{url "Todo.AddToDo"}}" method="POST">
+
+            {{with $field := field "todo.Name" .}}
+                <div class="form-group">
+                    <label for="{{$field.Id}}">New ToDo:</label>
+                    <input id="new-todo" class="form-control" autofocus="" type="text" name="{{$field.Name}}" value="{{$field.Flash}}" />
+                 </div>
+            {{end}}
+
+            <button id="send-todo" class="btn btn-default" type="submit">Add ToDo</button>
+
+        </form>
+
+        <form action="{{url "Todo.CompleteToDo"}}" method="POST">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><span class="caret"></span></th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Completed</th>
+                        <th>Creator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .todoList}}
+                    <tr>
+                        <td><input type="checkbox" name={{.Number}}></td>
+                        <th scope="row">{{.Number}}</th>
+                        <td>{{.Name}}</td>
+                        <td>{{.Completed}}</td>
+                        <td>{{.Creator}}</td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+
+            <button class="btn btn-success" type="submit">Complete ToDo</button>
+
+            <a href="{{url "Todo.Logout"}}">
+                <button type="button" class="btn btn-danger pull-right">Logout</button>
+            </a>
+        </form>
+
+    </div>
+</div>
+
+{{template "footer.html" .}}

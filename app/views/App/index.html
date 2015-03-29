@@ -1,0 +1,29 @@
+{{set . "title" "Login"}}
+{{template "header.html" .}}
+
+<div class="container">
+    <div class="col-md-4">
+        <h1>ToDo Example</h1>
+
+        {{range .errors}}
+            <p class="text-danger">{{.Message}}</p>
+        {{end}}
+        <p class="text-danger">{{.flash.error}}</p>
+
+        <form action="{{url "App.Login"}}" method="POST">
+
+            {{with $field := field "user.Name" .}}
+                <div class="form-group">
+                    <label for="{{$field.Id}}">User Name:</label>
+                    <input class="form-control" autofocus="" type="text" name="{{$field.Name}}" value="{{$field.Flash}}" />
+                 </div>
+            {{end}}
+
+            <button class="btn btn-default" type="submit">Login</button>
+
+        </form>
+
+    </div>
+</div>
+
+{{template "footer.html" .}}
