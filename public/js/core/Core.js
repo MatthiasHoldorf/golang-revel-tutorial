@@ -63,7 +63,7 @@ var Core = (function() {
             if (moduleData[moduleId] === undefined) {
                 throw new Error("Attempt to start a module that has not been registered: " + moduleId);
             }
-// only start a module that isn't already started
+            // only start a module that isn't already started
             else if (moduleData[moduleId].instance === null) {
                 moduleData[moduleId].instance = moduleData[moduleId].creator(new Sandbox(this , moduleId));
                 try {
